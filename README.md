@@ -16,7 +16,7 @@ Each level follows a core gameplay loop:
 2. Upgrade Towers
 3. Defend against Enemy Waves
 4. Use Abilities To support the defense
-5. Complete waves to earn reawards
+5. Complete waves to earn rewards
 
 > Players must **strategically place towers, manage resources, and use abilities effectively** to protect their base.
 
@@ -38,7 +38,7 @@ Each level follows a core gameplay loop:
 ## Event-Driven System Communication
 - Several gameplay systems communicate through C# events, reducing tight coupling between modules.
 - This approach is used across different gameplay layers, including:
-  * Map genration stages
+  * Map generation stages
   * Enemy wave events
   * Gameplay interactions
 ## Object Pooling for Enemy Spawning
@@ -47,7 +47,7 @@ Each level follows a core gameplay loop:
   * Reduce runtime allocations
   * Improve performance during large enemy waves
 ## ScriptableObject Data-Driven Design  
-- Many gameplay systems are built using ScriptableObject-based data configuration.
+- Many gameplay systems are built using **ScriptableObject**-based data configuration.
 - This allows flexible tuning of gameplay elements such as:
   * Enemy Data
   * Ability configuration
@@ -78,7 +78,7 @@ Several core gameplay managers are implemented using the **Singleton pattern to 
   * Serve as the **foundation of early-game defense**
 - Key characteristics:
   *  Archer has **75° vision**
-  *  Can target **all target**
+  *  Can attack **all target**
   *  Balanced attack speed and damage
 > Because of its flexibility, Archer Towers are commonly used to **cover multiple lanes and provide consistent damage output** throughout the game.
 
@@ -233,7 +233,7 @@ Map Generation
   * Expansion of the ability system
   * Future implementation of custom map generation
 
-## 9: Future Development plant
+## 9: Future Development Plans
 Planned improvements include:
 # Advanced Tower Upgrades: Towers will be able to upgrade to levels 5–7, which must be unlocked through the World Map progression system using Blue Flame Points.
 # Custom Mode:
