@@ -20,7 +20,56 @@ Each level follows a core gameplay loop:
 
 > Players must **strategically place towers, manage resources, and use abilities effectively** to protect their base.
 
-# 3: Tower System
+# 3: Technical Highlights
+## Procedural Grid-Based Map Generation
+- Implemented **a multi-stage procedural map generation pipeline** that builds the map using a grid-based architecture.
+- The generation process follows a structured pipeline:
+  * Background → Ground → Path → Object Placement
+- This system ensures that generated maps always maintain **valid enemy paths** and **compatible tower placement areas**.
+
+## Grid-Based Gameplay Architecture
+- The core gameplay systems are built on top of a GridNode-based grid structure. Each node stores map-related data such as position, tile type, and object placement state.
+- This grid is used by multiple systems including:
+  * Map generation
+  * Tower placement
+  * Path generation
+  * Environment Object placement
+
+## Event-Driven System Communication
+- Several gameplay systems communicate through C# events, reducing tight coupling between modules.
+- This approach is used across different gameplay layers, including:
+  * Map genration stages
+  * Enemy wave events
+  * Gameplay interactions
+## Object Pooling for Enemy Spawning
+- Implemented **an object pooling system** in the enemy spawning logic to reuse enemy instances instead of repeatedly instantiating and destroying them.
+- This helps:
+  * Reduce runtime allocations
+  * Improve performance during large enemy waves
+## ScriptableObject Data-Driven Design  
+- Many gameplay systems are built using ScriptableObject-based data configuration.
+- This allows flexible tuning of gameplay elements such as:
+  * Enemy Data
+  * Ability configuration
+  * Level setup
+  * Environment assets
+without modifying core code
+
+## Modular Tower Architecture
+- All towers inherit from a shared **BaseTower class**, allowing common functionality while enabling unique mechanics for each tower type.
+- Current tower implementations include:
+  * Archer Tower
+  * Mage Tower
+  * Guardian Tower
+  * Catapult Tower
+  * 
+## Wave-Based Enemy System
+Enemy spawning is organized using a wave-based system that manages enemy groups, spawn timing, and wave progression throughout each level.
+
+## Singleton-Based Core Managers
+Several core gameplay managers are implemented using the **Singleton pattern to provide** centralized access and maintain consistent global state across systems.
+
+# 4: Tower System
 ## Archer Tower
 - The Archer Tower is the most basic and versatile defensive structure.
 - Design goals:
@@ -71,7 +120,7 @@ The Guardian Tower operates by **summoning Guardian units that physically block 
   * Projectile volleys that can hit multiple enemies
 > Catapult Towers are particularly effective when enemy waves become larger and more densely packed.
 
-# 4: Ability System
+# 5: Ability System
 > Abilities enhance the defense system by providing diverse powers and unique ways to deal damage.
 
 The available abilities include:
@@ -79,7 +128,7 @@ The available abilities include:
 - **Thunder Lightning**: Summons instant lightning strikes at the selected location.
 - **Explosive Barrel**: A barrel that explodes and deals large area-of-effect damage.
 
-# 5: World Map & Progression System
+# 6: World Map & Progression System
 - The game uses a World Map to manage player progression.
 - From the World Map, players can:
   * Select campaign levels
@@ -91,7 +140,7 @@ The available abilities include:
   * Unlock new abilities
   * Unlock higher tower upgrade levels (this feature will be added in a future update)
     
-# 6: Procedural Map Generation System
+# 7: Procedural Map Generation System
 ## Progress: Background → Ground → Path → Object Placement
 - One of the key technical systems in the project is **the Procedural Map Generation System**.
 - The system is built on a grid-based procedural generation approach, allowing dynamic map layouts while maintaining gameplay constraints required for tower defense mechanics.
@@ -143,3 +192,58 @@ The available abilities include:
   * Avoid placing objects on enemy paths
   * Distribute objects according to the terrain layout
 > This step helps make the map feel more natural and visually dynamic.
+
+# 8: Code Architecture
+The project is structured using a modular gameplay architecture to improve scalability and maintainability.
+
+```
+Core Systems
+├── LevelManager
+├── GameInput
+├── WaveSystem
+└── EconomySystem
+
+Tower System
+├── BaseTower
+├── ArcherTower
+├── MageTower
+├── GuardianTower
+└── CatapultTower
+
+Enemy System
+├── BaseEnemy
+├── EnemyMovement
+└── EnemyCombat
+
+Ability System
+├── BaseAbility
+├── SpikeTrap
+├── ExplosiveBarrel
+└── ThunderLightning
+
+Map Generation
+├── GridNode
+├── PathGenerator
+├── GroundGenerator
+├── BackgroundGenerator
+└── ObjectPlaced
+```
+- This structure allows:
+  * Easy addition of new towers
+  * Expansion of the ability system
+  * Future implementation of custom map generation
+
+## 9: Future Development plant
+Planned improvements include:
+# Advanced Tower Upgrades: Towers will be able to upgrade to levels 5–7, which must be unlocked through the World Map progression system using Blue Flame Points.
+# Custom Mode:
+- **A Custom Mode** will use the procedural generation system to automatically generate:
+  * Maps
+  * Enemy waves
+  * Gameplay scenarios
+- This system will rely on: LevelManagerSO, WaveScript
+
+## Author:
+- Game Developer / System Architect: Nguyễn Hoàng Minh Tân
+  * Email contact: minhtanjjjj@gmail.com
+  * Portfolio: 
