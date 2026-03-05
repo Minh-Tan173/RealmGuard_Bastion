@@ -21,3 +21,11 @@ Each level follows a core gameplay loop:
 Players must **strategically place towers, manage resources, and use abilities effectively** to protect their base.
 
 ### 3: Tower System
+# Archer Tower
+- A basic tower with low cost and stable performance.
+- Features:
+  * Archer has **75° vision**
+  * Can attack multi type target: ground enemies, flying enemies, river enemies
+- Players must strategically place towers, manage resources
+
+# Mage Tower
