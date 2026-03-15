@@ -36,7 +36,7 @@ MonoBehaviour:
     attackRange: 0
     pebbleSpeed: 6
     pebblePerVolley: 1
-    pebbleSplashRadius: 0.15
+    pebbleSplashRadius: 0.19
     cooldownTimer: 1.5
     catapulSpawnPos: {x: 0, y: 0.08, z: 0}
   - levelTower: 2
@@ -46,7 +46,7 @@ MonoBehaviour:
     attackRange: 3.3
     pebbleSpeed: 6
     pebblePerVolley: 2
-    pebbleSplashRadius: 0.19
+    pebbleSplashRadius: 0.25
     cooldownTimer: 1.7
     catapulSpawnPos: {x: 0, y: 0.128, z: 0}
   - levelTower: 3
@@ -56,7 +56,7 @@ MonoBehaviour:
     attackRange: 3.6
     pebbleSpeed: 6
     pebblePerVolley: 3
-    pebbleSplashRadius: 0.23
+    pebbleSplashRadius: 0.29
     cooldownTimer: 2
     catapulSpawnPos: {x: 0, y: 0.27, z: 0}
   - levelTower: 4
@@ -66,6 +66,6 @@ MonoBehaviour:
     attackRange: 4
     pebbleSpeed: 6
     pebblePerVolley: 3
-    pebbleSplashRadius: 0.27
+    pebbleSplashRadius: 0.33
     cooldownTimer: 2.3
     catapulSpawnPos: {x: 0, y: 0.55, z: 0}

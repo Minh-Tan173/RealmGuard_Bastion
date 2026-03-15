@@ -14,6 +14,7 @@ public class MageTowerSO : TowerSO
     [Header("Layer")]
     public LayerMask groundEnemyLayer;
     public LayerMask flyEnemyLayer;
+    public LayerMask riverEnemyLayer;
 
     [Header("Soldier Base Data")]
     public float priceMage;

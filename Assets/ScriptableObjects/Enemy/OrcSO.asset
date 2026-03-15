@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resistanceType: 2
   enemyName: Orc
-  description: Orc is a slow, heavily armored ground enemy with high HP. It trudges
-    forward steadily and punishes soldiers who get too close.
+  description: Orc is a slow, heavily armored ground enemy with high HP and magic
+    resistance. It trudges forward steadily and punishes soldiers who get too close.
   anomalyDescription: 'Orc has a "Thunderstrike Anomaly":  Upon death, unleashes
     a powerful lightning strike dealing massive damage to nearby soldiers and towers.'
   enemyPrice: 45
   totalHealth: 14
   moveSpeed: 0.8
   radiusOffset: 0.8
+  anomalyRate: 0
   detectedZone: 3.5
   attackDamage: 2
   homeBaseLayer:
@@ -35,4 +36,4 @@ MonoBehaviour:
   thinkingTimer: 0
   attackTimer: 0.8
   prefab: {fileID: 3634750922468001485, guid: c35680e77ec033745aeb94bb824ba283, type: 3}
-  introductionUI: {fileID: 0}
+  introductionUI: {fileID: 8139994721505557160, guid: 9a511ce1eb944e0429d473500c15435a, type: 3}

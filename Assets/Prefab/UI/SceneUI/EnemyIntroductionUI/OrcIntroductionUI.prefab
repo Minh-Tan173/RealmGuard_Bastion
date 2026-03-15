@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2275844355453823219, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 8139994721505557160}
     - target: {fileID: 3652169763705034043, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
       propertyPath: m_text
       value: 'Orc has a "Thunderstrike Anomaly":  Upon death, unleashes a powerful
@@ -28,6 +32,10 @@ PrefabInstance:
     - target: {fileID: 3652169763705034043, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460174426249775275, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 5556980418536530815, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -239,16 +247,16 @@ PrefabInstance:
       objectReference: {fileID: -1306306545, guid: 4e790b381f0d59c4ab51fb95dab2e3ee, type: 3}
     - target: {fileID: 7584033295902870879, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
       propertyPath: m_text
-      value: Orc is a slow, heavily armored ground enemy with high HP. It trudges
-        forward steadily and punishes soldiers who get too close.
+      value: Orc is a slow, heavily armored ground enemy with high HP and magic resistance.
+        It trudges forward steadily and punishes soldiers who get too close.
       objectReference: {fileID: 0}
     - target: {fileID: 7584033295902870879, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
       propertyPath: m_fontSize
-      value: 6.3
+      value: 5.47
       objectReference: {fileID: 0}
     - target: {fileID: 7584033295902870879, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 6.3
+      value: 5.47
       objectReference: {fileID: 0}
     - target: {fileID: 7584033295902870879, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
       propertyPath: m_VerticalAlignment
@@ -263,3 +271,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
+--- !u!224 &8139994721505557160 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6694460402568758262, guid: ca6a9fe7d09cffa4383f2c9030f8635f, type: 3}
+  m_PrefabInstance: {fileID: 3175198636080576862}
+  m_PrefabAsset: {fileID: 0}

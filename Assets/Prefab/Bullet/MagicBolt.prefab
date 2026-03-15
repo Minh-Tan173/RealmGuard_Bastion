@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9ff3ad88d8b4e4b808355d1871e4e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSizeCheck: 0.15
   magicBoltVisual: {fileID: 3162500733045469035}
   minScaleRate: 50
   minDamageRate: 50
@@ -155,7 +154,7 @@ MonoBehaviour:
     - {fileID: -1257503315, guid: 2648ea430a224374fbc8a228dd17ce8d, type: 3}
     - {fileID: 218984941, guid: 2648ea430a224374fbc8a228dd17ce8d, type: 3}
     - {fileID: -644115573, guid: 2648ea430a224374fbc8a228dd17ce8d, type: 3}
-    frameRate: 0.02
+    frameRate: 0.005
     magicBoltType: 0
   - spriteArray:
     - {fileID: -1936161669, guid: 185085dc2e0f35748b45a1d64814a613, type: 3}
@@ -164,7 +163,7 @@ MonoBehaviour:
     - {fileID: 1095422125, guid: 185085dc2e0f35748b45a1d64814a613, type: 3}
     - {fileID: -1103596904, guid: 185085dc2e0f35748b45a1d64814a613, type: 3}
     - {fileID: 1407046583, guid: 185085dc2e0f35748b45a1d64814a613, type: 3}
-    frameRate: 0.02
+    frameRate: 0.005
     magicBoltType: 1
   - spriteArray:
     - {fileID: -2005005901, guid: 51c49ff2022ba7348970443fa54c1f9d, type: 3}
@@ -173,5 +172,5 @@ MonoBehaviour:
     - {fileID: 1231554833, guid: 51c49ff2022ba7348970443fa54c1f9d, type: 3}
     - {fileID: 576054143, guid: 51c49ff2022ba7348970443fa54c1f9d, type: 3}
     - {fileID: 709841054, guid: 51c49ff2022ba7348970443fa54c1f9d, type: 3}
-    frameRate: 0.02
+    frameRate: 0.005
     magicBoltType: 2

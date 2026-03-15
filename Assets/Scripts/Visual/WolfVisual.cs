@@ -76,7 +76,7 @@ public class WolfVisual : MonoBehaviour
     }
 
     private void Wolf_ChangedLeftDir(object sender, System.EventArgs e) {
-        spriteRenderer.flipY = false;
+        spriteRenderer.flipX = false;
     }
 
     private void WolfVisual_OnDeathAnim(object sender, System.EventArgs e) {

@@ -187,8 +187,6 @@ public class MageTowerUI : MonoBehaviour, IHasFunctionButton
             typeNameText.text = $"{RIVER_TYPE_NAME}";
         }
 
-        upgradeCostText.text = $"{mageTower.GetCurrentTowerStatus().upgradeCost}$";
-        fixedCostText.text = $"{mageTower.GetMageTowerSO().fixedCost}$";
     }
 
     private void HideUI() {

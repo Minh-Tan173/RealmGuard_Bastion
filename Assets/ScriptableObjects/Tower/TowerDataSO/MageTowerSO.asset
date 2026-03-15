@@ -23,7 +23,7 @@ MonoBehaviour:
   price: 420
   fixedCost: 210
   healthTower: 100
-  baseRange: 2.2
+  baseRange: 2.8
   soldierManagerSO: {fileID: 11400000, guid: a22890795275d9b4e9f12fe3d81989be, type: 2}
   scanTimerMax: 0.2
   placedSFXTimer: 0.6
@@ -33,6 +33,9 @@ MonoBehaviour:
   flyEnemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  riverEnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   priceMage: 160
   viewAngle: 90
   towerLevelDataList:
@@ -49,7 +52,7 @@ MonoBehaviour:
     upgradeTimer: 1.4
     upgradeCost: 450
     attackDamage: 3.2
-    attackRange: 2.8
+    attackRange: 3
     cooldownTimer: 0.75
     mageSpawnPos: {x: 0, y: 0, z: 0}
   - levelTower: 3
@@ -57,7 +60,7 @@ MonoBehaviour:
     upgradeTimer: 1.6
     upgradeCost: 600
     attackDamage: 3.6
-    attackRange: 3.2
+    attackRange: 3.5
     cooldownTimer: 0.6
     mageSpawnPos: {x: 0, y: 0.15, z: 0}
   - levelTower: 4
@@ -65,7 +68,7 @@ MonoBehaviour:
     upgradeTimer: 1.8
     upgradeCost: 750
     attackDamage: 4
-    attackRange: 3.7
+    attackRange: 3.8
     cooldownTimer: 0.5
     mageSpawnPos: {x: 0.012, y: 0.488, z: 0}
   magicBoltSpeed: 10

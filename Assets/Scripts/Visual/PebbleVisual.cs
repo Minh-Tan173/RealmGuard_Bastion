@@ -35,7 +35,6 @@ public class PebbleVisual : MonoBehaviour
 
         // 2.Reset animator
         animator.Rebind();
-        animator.Update(0f);
     }
 
     private void Pebble_OnExplosionAnim(object sender, System.EventArgs e) {

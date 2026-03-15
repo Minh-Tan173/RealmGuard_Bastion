@@ -366,6 +366,8 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
 
                 // To do: river enemy
 
+                currentAttackLayer = mageTowerSO.riverEnemyLayer;
+
                 break;
         }
 

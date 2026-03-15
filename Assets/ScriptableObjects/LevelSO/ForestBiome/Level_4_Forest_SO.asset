@@ -23,21 +23,21 @@ MonoBehaviour:
   - waveName: Wave 1
     enemyGroupList:
     - enemyTypeSO: {fileID: 11400000, guid: 54b95068ea5cb9346b3cb6477bd61b50, type: 2}
-      numberEnemy: 5
+      numberEnemy: 3
       cdSpawnTimer: 2
     newEnemy: {fileID: 0}
     newEnemyAnomaly: {fileID: 11400000, guid: 54b95068ea5cb9346b3cb6477bd61b50, type: 2}
   - waveName: Wave 2
     enemyGroupList:
     - enemyTypeSO: {fileID: 11400000, guid: 54b95068ea5cb9346b3cb6477bd61b50, type: 2}
-      numberEnemy: 10
+      numberEnemy: 5
       cdSpawnTimer: 2
     newEnemy: {fileID: 0}
     newEnemyAnomaly: {fileID: 0}
   - waveName: Wave 3
     enemyGroupList:
     - enemyTypeSO: {fileID: 11400000, guid: 54b95068ea5cb9346b3cb6477bd61b50, type: 2}
-      numberEnemy: 15
+      numberEnemy: 8
       cdSpawnTimer: 2
     newEnemy: {fileID: 0}
     newEnemyAnomaly: {fileID: 0}
