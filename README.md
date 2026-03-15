@@ -26,7 +26,21 @@ Each level follows a core gameplay loop:
 
 - Procedural Grid-Based Map Generation
   * A multi-stage procedural generation pipeline is used to dynamically create playable maps.
+
   * The generation process follows a structured pipeline:
+
+  * This ensures that every generated map:
+    Maintains a valid enemy path
+    Provides consistent tower placement areas
+    Supports future custom map generation
+
+- Grid-Based Gameplay Architecture:
+  * The gameplay systems are built on top of a GridNode-based grid structure.
+
+  * Each node stores map-related data such as:
+    Position
+    Tile type
+    Object placement state
 
 ## Architecture & Design Patterns
 
