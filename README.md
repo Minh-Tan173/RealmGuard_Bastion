@@ -21,53 +21,60 @@ Each level follows a core gameplay loop:
 > Players must **strategically place towers, manage resources, and use abilities effectively** to protect their base.
 
 # 3: Technical Highlights
-## Procedural Grid-Based Map Generation
-- Implemented **a multi-stage procedural map generation pipeline** that builds the map using a grid-based architecture.
-- The generation process follows a structured pipeline:
-  * Background → Ground → Path → Object Placement
-- This system ensures that generated maps always maintain **valid enemy paths** and **compatible tower placement areas**.
+## Core Gameplay Systems
+> The following systems form the core gameplay foundation of the project and define how the tower defense mechanics operate.
 
-## Grid-Based Gameplay Architecture
-- The core gameplay systems are built on top of a GridNode-based grid structure. Each node stores map-related data such as position, tile type, and object placement state.
-- This grid is used by multiple systems including:
-  * Map generation
-  * Tower placement
-  * Path generation
-  * Environment Object placement
+- Procedural Grid-Based Map Generation
+  * A multi-stage procedural generation pipeline is used to dynamically create playable maps.
+  * The generation process follows a structured pipeline:
+  ```Background → Ground → Path → Object Placement``` 
+  * This ensures that every generated map:
+    + Maintains a **valid enemy path**
+    + Provides **consistent tower placement areas**
+    + Supports **future custom map generation**
 
-## Event-Driven System Communication
-- Several gameplay systems communicate through C# events, reducing tight coupling between modules.
-- This approach is used across different gameplay layers, including:
-  * Map generation stages
-  * Enemy wave events
-  * Gameplay interactions
-## Object Pooling for Enemy Spawning
-- Implemented **an object pooling system** in the enemy spawning logic to reuse enemy instances instead of repeatedly instantiating and destroying them.
-- This helps:
-  * Reduce runtime allocations
-  * Improve performance during large enemy waves
-## ScriptableObject Data-Driven Design  
-- Many gameplay systems are built using **ScriptableObject**-based data configuration.
-- This allows flexible tuning of gameplay elements such as:
-  * Enemy Data
-  * Ability configuration
-  * Level setup
-  * Environment assets
-without modifying core code
+- Grid-Based Gameplay Architecture:
+  * The gameplay systems are built on top of a **GridNode-based grid structure**.
+  * Each node stores map-related data such as:
+    + Position
+    + Tile type
+    + Object placement state
+  * This grid is used across multiple gameplay systems including:
+    + Map generation
+    + Tower placement
+    + Path generation
+    + Environment object placement
+    + ...
+- Modular Tower Architecture
+  * All towers inherit from a shared BaseTower class, allowing common functionality while enabling unique mechanics for each tower type.
+> This modular structure allows new towers to be added with minimal changes to existing gameplay systems.
 
-## Modular Tower Architecture
-- All towers inherit from a shared **BaseTower class**, allowing common functionality while enabling unique mechanics for each tower type.
-- Current tower implementations include:
-  * Archer Tower
-  * Mage Tower
-  * Guardian Tower
-  * Catapult Tower
-  * 
-## Wave-Based Enemy System
-Enemy spawning is organized using a wave-based system that manages enemy groups, spawn timing, and wave progression throughout each level.
-
-## Singleton-Based Core Managers
-Several core gameplay managers are implemented using the **Singleton pattern to provide** centralized access and maintain consistent global state across systems.
+## Architecture & Design Patterns
+> The project applies several architectural and design patterns to maintain a scalable and maintainable gameplay codebase.
+- **Singleton Pattern**:
+  * Core gameplay managers such as **LevelManager**, **WaveSystem**, **GameInput**, and **EconomySystem**, ... are implemented using the Singleton pattern.
+  * This allows centralized access to important gameplay systems while maintaining a consistent global game state.
+_ **Observer Pattern (Event-Driven Communication)**:
+  * Gameplay systems communicate through C# events, reducing tight coupling between different modules.
+  * This event-driven architecture is used across multiple gameplay layers including:
+    + Map generation stages
+    + Enemy wave events
+    + Gameplay interactions
+    + SFX manager
+    + ...
+- **Finite State Machine (FSM)**:
+  * Enemy behavior and lifecycle are managed using a state-based system.
+  * States such as **Alive**, **Death**, and **Despawn** control how enemies behave and transition during gameplay.
+- **Object Pooling**:
+  * Enemy spawning uses an **object pooling system** to reuse enemy instances instead of repeatedly instantiating and destroying objects.
+  * This significantly reduces runtime allocations and improves performance during large enemy waves.
+- **ScriptableObject-Based Data-Driven Design**:
+  * Many gameplay systems are configured using ScriptableObjects, allowing flexible tuning of gameplay elements such as:
+    + Enemy data
+    + Ability configuration
+    + Level setup
+    + Environment assets
+> This approach separates gameplay data from code, improving maintainability and iteration speed.
 
 # 4: Tower System
 ## Archer Tower
@@ -212,8 +219,8 @@ Tower System
 
 Enemy System
 ├── BaseEnemy
-├── EnemyMovement
-└── EnemyCombat
+├── EnemyBehavior
+└── EnemyLifeControl
 
 Ability System
 ├── BaseAbility
