@@ -420,12 +420,11 @@ public class GuardianTower : BaseTower, IHasClockTimer, ITowerObject
 
         currentCenterGuardPos = this.defaultRallyPos; // Cập nhật center guard pos hiện tại 
 
-        // 1. Reset Guardian Data
-        OnResetDataGuardian?.Invoke(this, EventArgs.Empty);
-
         while (currentActiveIndex < guardianList.Count) {
 
             OnSpawnGuardian?.Invoke(this, EventArgs.Empty);
+
+            guardianList[currentActiveIndex].ResetGuardianData();
 
             ArrangeGuardianToSingleRing(this.defaultRallyPos, guardianList[currentActiveIndex], currentActiveIndex);
 

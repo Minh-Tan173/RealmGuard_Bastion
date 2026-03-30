@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Guardian : MonoBehaviour {
 
@@ -64,7 +65,11 @@ public class Guardian : MonoBehaviour {
     private void Start() {
 
         guardianTower.OnUpgradeLevelProgress += GuardianTower_OnUpgradeLevelProgress;
+<<<<<<< Updated upstream
         guardianTower.OnResetDataGuardian += GuardianTower_OnResetDataGuardian;
+=======
+        guardianTower.OnReleaseGuardianTarget += GuardianTower_OnReleaseGuardianTarget;
+>>>>>>> Stashed changes
 
         guardianLifeControl.OnDeath += GuardianLifeControl_OnDeath;
 
@@ -73,7 +78,11 @@ public class Guardian : MonoBehaviour {
     private void OnDestroy() {
 
         guardianTower.OnUpgradeLevelProgress -= GuardianTower_OnUpgradeLevelProgress;
+<<<<<<< Updated upstream
         guardianTower.OnResetDataGuardian -= GuardianTower_OnResetDataGuardian;
+=======
+        guardianTower.OnReleaseGuardianTarget -= GuardianTower_OnReleaseGuardianTarget;
+>>>>>>> Stashed changes
 
         guardianLifeControl.OnDeath -= GuardianLifeControl_OnDeath;
 
@@ -83,15 +92,6 @@ public class Guardian : MonoBehaviour {
         // When death
 
         Hide();
-    }
-
-    private void GuardianTower_OnResetDataGuardian(object sender, EventArgs e) {
-        // When has reset command from Tower
-
-        this.transform.position = guardianTower.GetSpawnPoint().position;
-
-        guardianLifeControl.ChangeLifeStateTo(GuardianLifeControl.GuardianLifeState.Alive);
-        ChangeGuardianState(GuadianState.Idle);
     }
 
     private void GuardianTower_OnUpgradeLevelProgress(object sender, EventArgs e) {
@@ -494,6 +494,14 @@ public class Guardian : MonoBehaviour {
 
         ChangeGuardianState(GuadianState.LockedIntentTarget);
         currentCoroutine = StartCoroutine(LockedIntentTargetCoroutine(intentTarget));
+    }
+
+    public void ResetGuardianData() {
+
+        this.transform.position = guardianTower.GetSpawnPoint().position;
+
+        guardianLifeControl.ChangeLifeStateTo(GuardianLifeControl.GuardianLifeState.Alive);
+        ChangeGuardianState(GuadianState.Idle);
     }
 
     public bool IsHasTarget() {
