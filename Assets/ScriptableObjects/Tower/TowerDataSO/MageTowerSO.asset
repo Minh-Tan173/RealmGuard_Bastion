@@ -34,7 +34,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   priceMage: 160
-  viewAngle: 90
+  viewAngle: 100
   towerLevelDataList:
   - levelTower: 1
     currentSprite: {fileID: 538892592, guid: 65b4ccef719acfe41a70763643692805, type: 3}

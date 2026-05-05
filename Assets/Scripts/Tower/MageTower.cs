@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MageTower : BaseTower, IHasClockTimer, ITowerObject
+public class MageTower : BaseTower, IHasClockTimer, ITowerObject, IHasFieldOfView
 {
 
     public event EventHandler OnChangeMageTowerType;
@@ -31,6 +31,12 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
     public event EventHandler OnUpgradeLevel2;
     public event EventHandler OnUpgradeLevel3;
     public event EventHandler OnUpgradeLevel4;
+
+    // Field Of View
+    public event EventHandler<IHasFieldOfView.FOVInfoEventArgs> UnlockFOV;
+    public event EventHandler<IHasFieldOfView.FOVInfoEventArgs> OnFOV;
+    public event EventHandler OffFOV;
+    public event EventHandler<IHasFieldOfView.FOVInfoEventArgs> UpdateFOV;
 
     [Header("Mage Tower Data")]
     [SerializeField] private MageTowerSO mageTowerSO;
@@ -284,6 +290,9 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
         UpdateAttackZone?.Invoke(this, new ITowerObject.UpgradeAttackZoneEventArgs { attackZone = currentAttackZone });
 
 
+        // Field Of View
+        OnFOV?.Invoke(this, new IHasFieldOfView.FOVInfoEventArgs { attackZone = currentAttackZone });
+
         // ArcherTowerUI control
         isOnArcherTowerUI = true;
         OnMageTowerUI?.Invoke(this, EventArgs.Empty);
@@ -306,6 +315,7 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
         if (isOnArcherTowerUI) {
 
             UnAttackZone?.Invoke(this, EventArgs.Empty);
+            OffFOV?.Invoke(this, EventArgs.Empty);
             UnMageTowerUI?.Invoke(this, EventArgs.Empty);
 
             isOnArcherTowerUI = false;
@@ -323,7 +333,7 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
             // If method was call when not upgrading
 
             UnAttackZone?.Invoke(this, EventArgs.Empty);
-
+            OffFOV?.Invoke(this, EventArgs.Empty);
         }
         else {
             // If method was call when upgrading
@@ -400,8 +410,9 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
 
                 OnUpgradeLevel1?.Invoke(this, EventArgs.Empty);
 
-                // Update attackZoneVisual
-                UpdateAttackZone?.Invoke(this, new ITowerObject.UpgradeAttackZoneEventArgs { attackZone = this.currentAttackZone });
+                // Update visual
+                UpdateAttackZone?.Invoke(this, new ITowerObject.UpgradeAttackZoneEventArgs { attackZone = currentAttackZone });
+                UpdateFOV?.Invoke(this, new IHasFieldOfView.FOVInfoEventArgs { attackZone = currentAttackZone });
 
                 break;
 
@@ -412,8 +423,9 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
 
                 OnUpgradeLevel2?.Invoke(this, EventArgs.Empty);
 
-                // Update attackZoneVisual
+                // Update visual
                 UpdateAttackZone?.Invoke(this, new ITowerObject.UpgradeAttackZoneEventArgs { attackZone = currentAttackZone });
+                UpdateFOV?.Invoke(this, new IHasFieldOfView.FOVInfoEventArgs { attackZone = currentAttackZone });
 
                 break;
 
@@ -424,8 +436,9 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
 
                 OnUpgradeLevel3?.Invoke(this, EventArgs.Empty);
 
-                // Update attackZoneVisual
+                // Update visual
                 UpdateAttackZone?.Invoke(this, new ITowerObject.UpgradeAttackZoneEventArgs { attackZone = currentAttackZone });
+                UpdateFOV?.Invoke(this, new IHasFieldOfView.FOVInfoEventArgs { attackZone = currentAttackZone });
 
                 break;
 
@@ -436,8 +449,9 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
 
                 OnUpgradeLevel4?.Invoke(this, EventArgs.Empty);
 
-                // Update attackZoneVisual
+                // Update visual
                 UpdateAttackZone?.Invoke(this, new ITowerObject.UpgradeAttackZoneEventArgs { attackZone = currentAttackZone });
+                UpdateFOV?.Invoke(this, new IHasFieldOfView.FOVInfoEventArgs { attackZone = currentAttackZone });
 
                 break;
 
@@ -475,6 +489,9 @@ public class MageTower : BaseTower, IHasClockTimer, ITowerObject
     }
 
     public Transform GetSpawnPoint(SoldierSO.SoldierDirection mageDirection) {
+        // Method này chỉ được gọi khi mua Mage
+
+        UnlockFOV?.Invoke(this, new IHasFieldOfView.FOVInfoEventArgs { soldierDirection = mageDirection, attackZone = currentAttackZone });
 
         switch (mageDirection) {
             case SoldierSO.SoldierDirection.Up:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 295a526732005054f9d8b7e71a8965f8
+guid: 5cb8ff60d9db0a2439d8bf5b1b9d89e9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fanglord_Up_Run_0
+      name: Fanglord_Side_Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 047e5df084d99b04cab660b6a8c8d3d6
-      internalID: -371086466
+      spriteID: 68bc00c23197e5f4b97e70ddabc102d8
+      internalID: 1171926528
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Up_Run_1
+      name: Fanglord_Side_Walk_1
       rect:
         serializedVersion: 2
         x: 96
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 976640523f0a5004eb603a5230ade815
-      internalID: 513359203
+      spriteID: aea7bb455a363154f8a295ec8b2bfdc4
+      internalID: 1556874812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Up_Run_2
+      name: Fanglord_Side_Walk_2
       rect:
         serializedVersion: 2
         x: 192
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf649f7d9ce8a7f4195276293419975a
-      internalID: -1545127712
+      spriteID: b903d94525781734496f6f58910f1fe4
+      internalID: 1409088000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Up_Run_3
+      name: Fanglord_Side_Walk_3
       rect:
         serializedVersion: 2
         x: 288
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3e0d8e99d09b5840a7fcf281459d06b
-      internalID: -1934567684
+      spriteID: 43b6cbbb22689a64db683309034c3317
+      internalID: -528156569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Up_Run_4
+      name: Fanglord_Side_Walk_4
       rect:
         serializedVersion: 2
         x: 384
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1f6515ae8596014aa5daccb329571ea
-      internalID: -2114432492
+      spriteID: faaab1f83cb06a649b2b9a431394c9cc
+      internalID: 1140239476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Up_Run_5
+      name: Fanglord_Side_Walk_5
       rect:
         serializedVersion: 2
         x: 480
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7fe9f3d0fdd3f246a957339d2c32087
-      internalID: -2145992459
+      spriteID: 54055d3acf3360d49ac03eacd7cdce55
+      internalID: -1815520179
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Fanglord_Up_Run_0: -371086466
-      Fanglord_Up_Run_1: 513359203
-      Fanglord_Up_Run_2: -1545127712
-      Fanglord_Up_Run_3: -1934567684
-      Fanglord_Up_Run_4: -2114432492
-      Fanglord_Up_Run_5: -2145992459
+      Fanglord_Side_Walk_0: 1171926528
+      Fanglord_Side_Walk_1: 1556874812
+      Fanglord_Side_Walk_2: 1409088000
+      Fanglord_Side_Walk_3: -528156569
+      Fanglord_Side_Walk_4: 1140239476
+      Fanglord_Side_Walk_5: -1815520179
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

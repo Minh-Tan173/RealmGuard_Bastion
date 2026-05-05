@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fanglord_Down_Run_0
+      name: Fanglord_Down_Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37d0f4b3a302113499250e2ce5dca89b
-      internalID: -1707959282
+      spriteID: 2758d9186d60b4848b8c3dedc71af63c
+      internalID: -1579380808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Down_Run_1
+      name: Fanglord_Down_Walk_1
       rect:
         serializedVersion: 2
         x: 96
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5febf8b69bf27944cb8d90f83338c66a
-      internalID: -1088685257
+      spriteID: d3e42518e5efc3c49938aae216796c05
+      internalID: -1052359813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Down_Run_2
+      name: Fanglord_Down_Walk_2
       rect:
         serializedVersion: 2
         x: 192
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b047ea63024a9024189b44d8d7c7be3e
-      internalID: -1080082553
+      spriteID: 882cd28a1d2cff14d90c1a633f1cdc2c
+      internalID: 1503860587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Down_Run_3
+      name: Fanglord_Down_Walk_3
       rect:
         serializedVersion: 2
         x: 288
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 607242b402d58a94fa274eedeb330153
-      internalID: 216638171
+      spriteID: b611860afdfa1bf4f951c0fb081b6348
+      internalID: 209056035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Down_Run_4
+      name: Fanglord_Down_Walk_4
       rect:
         serializedVersion: 2
         x: 384
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37b7c8f62e29c5b4dbf0e5e831dabbda
-      internalID: 2015973263
+      spriteID: f8748253b918497459125aebe183933b
+      internalID: -634244201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fanglord_Down_Run_5
+      name: Fanglord_Down_Walk_5
       rect:
         serializedVersion: 2
         x: 480
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86babdc360f07c14393fc8e5c0bc8db6
-      internalID: 1090666413
+      spriteID: b2118023ffac32243830cde0292e0b45
+      internalID: 884095845
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Fanglord_Down_Run_0: -1707959282
-      Fanglord_Down_Run_1: -1088685257
-      Fanglord_Down_Run_2: -1080082553
-      Fanglord_Down_Run_3: 216638171
-      Fanglord_Down_Run_4: 2015973263
-      Fanglord_Down_Run_5: 1090666413
+      Fanglord_Down_Walk_0: -1579380808
+      Fanglord_Down_Walk_1: -1052359813
+      Fanglord_Down_Walk_2: 1503860587
+      Fanglord_Down_Walk_3: 209056035
+      Fanglord_Down_Walk_4: -634244201
+      Fanglord_Down_Walk_5: 884095845
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
