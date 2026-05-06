@@ -106,4 +106,9 @@ public class BeeLifeControl : MonoBehaviour, IHasProgressBar
         return this.currentBeeLifeState;
     }
 
+
+    public float GetCurrentHealth() {
+        return this.currentHealth;
+    }
+
 }
