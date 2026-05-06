@@ -33,6 +33,9 @@ public class GameWinUI : MonoBehaviour
     [SerializeField] private Vector3 punchStrength;
     [SerializeField] private float punchDuration;
 
+    [Header("Prefab")]
+    [SerializeField] private Transform campaignMapUIPrefab;
+
     private CanvasGroup canvasGroup;
 
     private void Awake() {
@@ -43,9 +46,10 @@ public class GameWinUI : MonoBehaviour
 
             OnClickedButton(() => {
 
-                LevelData nextLevelData = SaveData.GetNextLevelData(LevelManager.Instance.GetLevelManagerSO());
+                //LevelData nextLevelData = SaveData.GetNextLevelData(LevelManager.Instance.GetLevelManagerSO());
+                //Loader.Load(nextLevelData);
 
-                Loader.Load(nextLevelData);
+                CampaignMapUI.SpawnCampaignMapUI(campaignMapUIPrefab, this.transform.parent);
             });
 
         });

@@ -1,8 +1,4 @@
 ﻿using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,8 +52,8 @@ public class MainMenuUI : MonoBehaviour
 
         continueGameButton.onClick.AddListener(() => {
 
-            Instantiate(sceneMangerSO.campaignMapUI, this.transform.parent);
-
+            //Instantiate(sceneMangerSO.campaignMapUI, this.transform.parent);
+            CampaignMapUI.SpawnCampaignMapUI(sceneMangerSO.campaignMapUI, this.transform.parent);
         });
 
         creditsButton.onClick.AddListener(() => {

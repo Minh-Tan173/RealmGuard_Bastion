@@ -2,8 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -232,6 +230,11 @@ public class CampaignMapUI : MonoBehaviour
         totalPointText.text = $": {this.totalPoint}";
 
         SaveData.SetNewTotalPoint(this.totalPoint);
+    }
+
+    public static void SpawnCampaignMapUI(Transform campaignMapUIPrefab, Transform parent) {
+
+        Transform campaignMapUI = Instantiate(campaignMapUIPrefab, parent);
     }
 
 }

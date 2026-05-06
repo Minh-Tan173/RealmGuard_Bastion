@@ -246,7 +246,6 @@ public class LevelManager : MonoBehaviour
             case LevelState.LostGame:
                 // Show Lost GUI
 
-
                 SceneUIManager.SpawnUI(SceneUIManager.TypeUI.GameOverUI);
 
                 break;
