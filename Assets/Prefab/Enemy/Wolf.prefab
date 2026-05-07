@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6811983119125255902, guid: 8a82a806d2f3798478d40f47ca34ac94, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6811983119125255902, guid: 8a82a806d2f3798478d40f47ca34ac94, type: 3}
       propertyPath: m_Size.x

@@ -3623,7 +3623,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 6aa24e49c7f0069409711819c3fadd26, type: 2}
     - target: {fileID: 8781736136227422675, guid: 6800beec258ceac4383a2b6b62769f82, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8781736136227422675, guid: 6800beec258ceac4383a2b6b62769f82, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 365319633
       objectReference: {fileID: 0}
     - target: {fileID: 8781736136227422675, guid: 6800beec258ceac4383a2b6b62769f82, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

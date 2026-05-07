@@ -921,6 +921,8 @@ MonoBehaviour:
   levelAnchorPointArray:
   - {fileID: 6443713335657039982}
   - {fileID: 2886553593985668877}
+  - {fileID: 1740279228127396578}
+  - {fileID: 236795713034601742}
   totalPointText: {fileID: 5737053555875757684}
 --- !u!1 &4179826470759174298
 GameObject:
@@ -1560,7 +1562,7 @@ Transform:
   m_GameObject: {fileID: 5530862588086802957}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -337, y: 121, z: 0}
+  m_LocalPosition: {x: -331.6, y: 165.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
