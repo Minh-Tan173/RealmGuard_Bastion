@@ -64,7 +64,7 @@ public class SlimeMini : BaseEnemy
 
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-                ChangeDirection(waypointList[targetIndex].position);
+                this.currentSlimeMiniDir = ChangeDirection(waypointList[targetIndex].position);
 
             }
         }
@@ -159,7 +159,7 @@ public class SlimeMini : BaseEnemy
         this.targetIndex = slimeParent.GetTargerIndex();
         this.targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-        ChangeDirection(waypointList[targetIndex].position);
+        this.currentSlimeMiniDir = ChangeDirection(waypointList[targetIndex].position);
 
         canMove = true;
 
