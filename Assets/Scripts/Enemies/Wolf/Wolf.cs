@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,8 +16,6 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
     public event EventHandler OnAttackAnim;
     public event EventHandler OnPreAttackAnim;
     public event EventHandler ResetAnimator; // Xảy ra bất cứ khi nào thực hiện việc di chuyển
-    public event EventHandler ChangedLeftDir;
-    public event EventHandler ChangedRightDir;
 
     [Header("Wolf Data")]
     [SerializeField] private EnemySO wolfSO;
@@ -86,32 +83,15 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
     }
 
     private void WolfLifeControl_OnSpawn(object sender, EventArgs e) {
-        // 1. Reset Next Target
-        targetWaypointIndex = 1;
 
-        // 2. Reset movement and direction
-        ChangeDirection(waypointList[targetWaypointIndex].position);
-        targetPos = RandomWaypointPos(waypointList[targetWaypointIndex]);
-
-        // 3. Reset Behavior
-        ChangeWolfBehaviorTo(WolfBehavior.Walk);
+        OnInit();
     }
 
     private void ParentSpawner_ActiveEnemy(object sender, EnemySpawner.OnActiveEnemyEventArgs e) {
 
         if (this == e.baseEnemy) {
 
-            waypointList = PathGenerator.Instance.GetWaypointList();
-
-            this.transform.position = waypointList[0].position;
-
-            Show();
-
-            this.ActiveEvent();
-
-            isUnlockAnomaly = SaveData.IsUnlockAnomaly(wolfSO);
-
-            StartCoroutine(wolfLifeControl.RespawnCoroutine());
+            OnActive();
         }
 
     }
@@ -299,50 +279,6 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
 
     }
 
-    private void ChangeDirection(Vector3 targetPosition) {
-
-        Vector3 moveDir = targetPosition - this.transform.position;
-
-        if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)) {
-            // Đang đi ngang
-
-            if (moveDir.x < 0) {
-                // Turn Left
-
-                this.currentWolfDirection = BaseEnemy.EnemyDirection.Left;
-
-                ChangedLeftDir?.Invoke(this, EventArgs.Empty);
-
-            }
-            else if (moveDir.x > 0) {
-                // Turn Right
-
-                this.currentWolfDirection = BaseEnemy.EnemyDirection.Right;
-
-                ChangedRightDir?.Invoke(this, EventArgs.Empty); 
-            }
-
-
-        }
-
-        if (Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x)) {
-            // Đang đi dọc
-
-            if (moveDir.y < 0) {
-                // Turn Down
-
-                this.currentWolfDirection = BaseEnemy.EnemyDirection.Down;
-            }
-            else if (moveDir.y > 0) {
-                // Turn Up
-
-                this.currentWolfDirection = BaseEnemy.EnemyDirection.Up;
-            }
-
-        }
-
-    }
-
     private IEnumerator PreAttackCoroutine() {
 
         OnPreAttackAnim?.Invoke(this, EventArgs.Empty);
@@ -486,10 +422,44 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
         this.gameObject.SetActive(true);
     }
 
-    public void Hide() {
+    private void Hide() {
 
         this.gameObject.SetActive(false);
     }
+
+    public override void OnInit() {
+
+        // 1. Reset Next Target
+        targetWaypointIndex = 1;
+
+        // 2. Reset movement and direction
+        ChangeDirection(waypointList[targetWaypointIndex].position);
+        targetPos = RandomWaypointPos(waypointList[targetWaypointIndex]);
+
+        // 3. Reset Behavior
+        ChangeWolfBehaviorTo(WolfBehavior.Walk);
+    }
+
+    public override void OnActive() {
+
+        waypointList = PathGenerator.Instance.GetWaypointList();
+
+        this.transform.position = waypointList[0].position;
+
+        Show();
+
+        this.ActiveEvent();
+
+        isUnlockAnomaly = SaveData.IsUnlockAnomaly(wolfSO);
+
+        StartCoroutine(wolfLifeControl.RespawnCoroutine());
+    }
+
+    public override void OnDespawn() {
+
+        Hide();
+    }
+
 
     public override void HitDamage(float damageGet) {
 

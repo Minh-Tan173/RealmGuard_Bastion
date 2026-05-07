@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
@@ -20,7 +21,7 @@ public class BaseEnemy : MonoBehaviour
     }
 
     public enum EnemyDirection {
-
+        Default,
         Up,
         Down,
         Left,
@@ -28,8 +29,13 @@ public class BaseEnemy : MonoBehaviour
 
     }
 
+    // Active State Event
     public static event EventHandler OnActiveEnemy;
     public static event EventHandler UnActiveEnemy;
+
+    // Animator Event
+    public event EventHandler ChangedLeftDir;
+    public event EventHandler ChangedRightDir;
 
 
     public void OnDisable() {
@@ -43,9 +49,48 @@ public class BaseEnemy : MonoBehaviour
         OnActiveEnemy?.Invoke(this, EventArgs.Empty);
     }
 
-    public void ChangeDirection(Vector3 targetPos) {
+    public EnemyDirection ChangeDirection(Vector3 targetPos) {
+
+        Vector3 moveDir = targetPos - this.transform.position;
+
+        if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)) {
+            // Đang đi ngang
+
+            if (moveDir.x < 0) {
+                // Turn Left
+
+                ChangedLeftDir?.Invoke(this, EventArgs.Empty);
+                return BaseEnemy.EnemyDirection.Left;
+
+            }
+            else if (moveDir.x > 0) {
+                // Turn Right
+
+                ChangedRightDir?.Invoke(this, EventArgs.Empty);
+                return BaseEnemy.EnemyDirection.Right;
+            }
 
 
+        }
+
+        if (Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x)) {
+            // Đang đi dọc
+
+            if (moveDir.y < 0) {
+                // Turn Down
+
+                return BaseEnemy.EnemyDirection.Down;
+            }
+            else if (moveDir.y > 0) {
+                // Turn Up
+
+                return BaseEnemy.EnemyDirection.Up;
+            }
+
+        }
+
+        Debug.LogError("Something wrong with direction calculate");
+        return EnemyDirection.Default;
     }
 
     public virtual void OnInit() {

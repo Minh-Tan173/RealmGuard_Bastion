@@ -43,7 +43,7 @@ public class BeeLifeControl : MonoBehaviour, IHasProgressBar
 
             case BaseEnemy.EnemyLifeState.Despawn:
 
-                bee.Hide();
+                bee.OnDespawn();
 
                 break;
         }
@@ -81,7 +81,7 @@ public class BeeLifeControl : MonoBehaviour, IHasProgressBar
         yield return new WaitForSeconds(bee.GetBeeSO().deathTimer);
 
         LevelManager.Instance.ChangedCoinTo(ILevelManager.CoinChangedState.Increase, bee.GetBeeSO().enemyPrice);
-        bee.Hide();
+        bee.OnDespawn();
 
     }
 

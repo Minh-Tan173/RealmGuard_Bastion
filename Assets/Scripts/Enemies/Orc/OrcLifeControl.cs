@@ -43,7 +43,7 @@ public class OrcLifeControl : MonoBehaviour, IHasProgressBar
                 break;
             case BaseEnemy.EnemyLifeState.Despawn:
 
-                orc.Hide();
+                orc.OnDespawn();
 
                 break;
         }

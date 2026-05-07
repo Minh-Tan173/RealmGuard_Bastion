@@ -10,8 +10,6 @@ public class Orc : BaseEnemy, ICanAttackPhysic
         Attack
     }
 
-    public event EventHandler ChangedLeftDir;
-    public event EventHandler ChangedRightDir;
     public event EventHandler OnAttackAnim;
     public event EventHandler OnResetAnim;
     public event EventHandler ActiveAnomaly;
@@ -83,50 +81,28 @@ public class Orc : BaseEnemy, ICanAttackPhysic
                 StartCoroutine(ActivatedAnomalyCoroutine());
             }
             else {
-                Hide();
+
+                OnDespawn();
             }
         }
         else {
             // If anomaly isn't unlocked 
 
-            Hide();
+            OnDespawn();
         }
     }
 
 
     private void OrcLifeControl_OnSpawn(object sender, EventArgs e) {
 
-        // 1. Reset Position and Next Target
-        this.transform.position = waypointList[0].position;
-        targetIndex = 1;
-
-        // 2. Reset movement behavior and direction
-        ChangeOrcBehaviorTo(OrcBehavior.Walk);
-        ChangeDirection(waypointList[targetIndex].position);
-        canMove = true;
-        targetPos = RandomWaypointPos(waypointList[targetIndex]);
-
-        // 3. Reset target
-        isLockedByTarget = false;
-        currentTarget = null;
-
+        OnInit();
     }
-
 
     private void ParentSpawner_ActiveEnemy(object sender, EnemySpawner.OnActiveEnemyEventArgs e) {
 
         if (this == e.baseEnemy) {
 
-            waypointList = PathGenerator.Instance.GetWaypointList();
-
-            Vector3 randomPos = RandomWaypointPos(waypointList[0]);
-            this.transform.position = randomPos;
-
-            Show();
-
-            this.ActiveEvent();
-
-            StartCoroutine(orcLifeControl.RespawnCoroutine());
+            OnActive();
 
         }
 
@@ -308,7 +284,7 @@ public class Orc : BaseEnemy, ICanAttackPhysic
             else {
                 // If cant detected any canAttack object
 
-                Hide();
+                OnDespawn();
                 yield break;
             }
         }
@@ -333,51 +309,7 @@ public class Orc : BaseEnemy, ICanAttackPhysic
 
         Destroy(thunderLightningAnomalyTransform.gameObject);
 
-        Hide();
-
-    }
-
-    private void ChangeDirection(Vector3 targetPosition) {
-
-        //Vector3 moveDir = waypointList[targetIndex].position - this.transform.position;
-        Vector3 moveDir = targetPosition - this.transform.position;
-
-        if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)) {
-            // Đang đi ngang
-
-            if (moveDir.x < 0) {
-                // Turn Left
-
-                this.currentOrcDirection = BaseEnemy.EnemyDirection.Left;
-
-                ChangedLeftDir?.Invoke(this, EventArgs.Empty);
-            }
-            else if (moveDir.x > 0) {
-                // Turn Right
-
-                this.currentOrcDirection = BaseEnemy.EnemyDirection.Right;
-
-                ChangedRightDir?.Invoke(this, EventArgs.Empty);
-            }
-
-
-        }
-
-        if (Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x)) {
-            // Đang đi dọc
-
-            if (moveDir.y < 0) {
-                // Turn Down
-
-                this.currentOrcDirection = BaseEnemy.EnemyDirection.Down;
-            }
-            else if (moveDir.y > 0) {
-                // Turn Up
-
-                this.currentOrcDirection = BaseEnemy.EnemyDirection.Up;
-            }
-
-        }
+        OnDespawn();
 
     }
 
@@ -401,8 +333,44 @@ public class Orc : BaseEnemy, ICanAttackPhysic
         this.gameObject.SetActive(true);
     }
 
-    public void Hide() {
+    private void Hide() {
         this.gameObject.SetActive(false);
+    }
+
+    public override void OnInit() {
+
+        // 1. Reset Position and Next Target
+        this.transform.position = waypointList[0].position;
+        targetIndex = 1;
+
+        // 2. Reset movement behavior and direction
+        ChangeOrcBehaviorTo(OrcBehavior.Walk);
+        ChangeDirection(waypointList[targetIndex].position);
+        canMove = true;
+        targetPos = RandomWaypointPos(waypointList[targetIndex]);
+
+        // 3. Reset target
+        isLockedByTarget = false;
+        currentTarget = null;
+    }
+
+    public override void OnActive() {
+
+        waypointList = PathGenerator.Instance.GetWaypointList();
+
+        Vector3 randomPos = RandomWaypointPos(waypointList[0]);
+        this.transform.position = randomPos;
+
+        Show();
+
+        this.ActiveEvent();
+
+        StartCoroutine(orcLifeControl.RespawnCoroutine());
+    }
+
+    public override void OnDespawn() {
+
+        Hide();
     }
 
     public override void HitDamage(float damageGet) {

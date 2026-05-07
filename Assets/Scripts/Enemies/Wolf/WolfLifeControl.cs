@@ -42,7 +42,7 @@ public class WolfLifeControl : MonoBehaviour, IHasProgressBar
                 break;
             case BaseEnemy.EnemyLifeState.Despawn:
 
-                wolf.Hide();
+                wolf.OnDespawn();
 
                 break;  
         }
@@ -63,7 +63,7 @@ public class WolfLifeControl : MonoBehaviour, IHasProgressBar
         yield return new WaitForSeconds(wolf.GetWolfSO().deathTimer);
 
         LevelManager.Instance.ChangedCoinTo(ILevelManager.CoinChangedState.Increase, wolf.GetWolfSO().enemyPrice);
-        wolf.Hide();
+        wolf.OnDespawn();
     }
 
     public BaseEnemy.EnemyLifeState GetCurrentWolfLifeState() {

@@ -46,7 +46,7 @@ public class SlimeLifeControl : MonoBehaviour, IHasProgressBar
 
             case BaseEnemy.EnemyLifeState.Despawn:
 
-                slime.Hide();
+                slime.OnDespawn();
 
                 break;
         }
@@ -86,7 +86,7 @@ public class SlimeLifeControl : MonoBehaviour, IHasProgressBar
 
         // Death Behavior happen
         LevelManager.Instance.ChangedCoinTo(ILevelManager.CoinChangedState.Increase, slime.GetSlimeSO().enemyPrice);
-        slime.Hide();
+        slime.OnDespawn();
 
     }
 

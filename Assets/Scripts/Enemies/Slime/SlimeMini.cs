@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SlimeMini : BaseEnemy
 {
-    public event EventHandler ChangedLeftDir;
-    public event EventHandler ChangedRightDir;
 
     [SerializeField] private EnemySO slimeSO;
 
@@ -30,7 +28,7 @@ public class SlimeMini : BaseEnemy
         // After Spawn
         this.ActiveEvent();
     }
-
+            
     private void Update() {
 
         if (!canMove) {
@@ -55,7 +53,7 @@ public class SlimeMini : BaseEnemy
             if (targetIndex == waypointList.Count - 1) {
                 // If reach last index
 
-                OnDestroySelf();
+                OnDespawn();
 
                 return;
 
@@ -66,7 +64,7 @@ public class SlimeMini : BaseEnemy
 
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-                ChangeDirection();
+                ChangeDirection(waypointList[targetIndex].position);
 
             }
         }
@@ -83,49 +81,6 @@ public class SlimeMini : BaseEnemy
 
     }
 
-    private void ChangeDirection() {
-
-        Vector3 moveDir = waypointList[targetIndex].position - this.transform.position;
-
-        if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)) {
-            // Đang đi ngang
-
-            if (moveDir.x < 0) {
-                // Turn Left
-
-                this.currentSlimeMiniDir = BaseEnemy.EnemyDirection.Left;
-
-                ChangedLeftDir?.Invoke(this, EventArgs.Empty);
-
-            }
-            else if (moveDir.x > 0) {
-                // Turn Right
-
-                this.currentSlimeMiniDir = BaseEnemy.EnemyDirection.Right;
-
-                ChangedRightDir?.Invoke(this, EventArgs.Empty);
-            }
-
-
-        }
-
-        if (Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x)) {
-            // Đang đi dọc
-
-            if (moveDir.y < 0) {
-                // Turn Down
-
-                this.currentSlimeMiniDir = BaseEnemy.EnemyDirection.Down;
-            }
-            else if (moveDir.y > 0) {
-                // Turn Up
-
-                this.currentSlimeMiniDir = BaseEnemy.EnemyDirection.Up;
-            }
-
-        }
-
-    }
     private Vector3 RandomWaypointPos(Transform targetWaypoint) {
 
         // Mặc định đặt lại randomTargetTimer mỗi lần randomWaypoint
@@ -140,6 +95,9 @@ public class SlimeMini : BaseEnemy
         return randomPos;
     }
 
+    public override void OnDespawn() {
+        Destroy(this.gameObject);
+    }
 
     public override void HitDamage(float damageGet) {
 
@@ -201,14 +159,10 @@ public class SlimeMini : BaseEnemy
         this.targetIndex = slimeParent.GetTargerIndex();
         this.targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-        ChangeDirection();
+        ChangeDirection(waypointList[targetIndex].position);
 
         canMove = true;
 
-    }
-
-    public void OnDestroySelf() {
-        Destroy(this.gameObject);   
     }
 
     public BaseEnemy.EnemyDirection GetCurrentSlimeMiniDirection() {

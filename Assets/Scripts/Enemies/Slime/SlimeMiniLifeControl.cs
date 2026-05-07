@@ -66,7 +66,7 @@ public class SlimeMiniLifeControl : MonoBehaviour, IHasProgressBar
 
         yield return new WaitForSeconds(slimeMini.GetSlimeSO().deathTimer);
 
-        slimeMini.OnDestroySelf(); 
+        slimeMini.OnDespawn(); 
 
     }
 

@@ -7,9 +7,6 @@ using UnityEngine.EventSystems;
 public class Bee : BaseEnemy
 {
 
-    public event EventHandler ChangedLeftDir;
-    public event EventHandler ChangedRightDir;
-
     [Header("Bee Data")]
     [SerializeField] private EnemySO beeSO;
     
@@ -41,7 +38,8 @@ public class Bee : BaseEnemy
         parentSpawner.ActiveEnemy += ParentSpawner_ActiveEnemy;
         beeLifeControl.OnSpawn += BeeLifeControl_OnSpawn;
 
-        this.gameObject.SetActive(false);
+        // After spawn
+        OnDespawn();
     }
 
     private void OnDestroy() {
@@ -51,14 +49,7 @@ public class Bee : BaseEnemy
 
     private void BeeLifeControl_OnSpawn(object sender, EventArgs e) {
 
-        // 1. Reset Position and Next Target
-        this.transform.position = waypointList[0].position;
-        targetIndex = 1;
-
-        // 2. Reset movement and direction
-        ChangeDirection();
-        canMove = true;
-        targetPos = RandomWaypointPos(waypointList[targetIndex]);
+        OnInit();
     }
 
 
@@ -66,15 +57,7 @@ public class Bee : BaseEnemy
 
         if (this == e.baseEnemy) {
 
-            waypointList = PathGenerator.Instance.GetWaypointList();
-
-            this.transform.position = waypointList[0].position;
-
-            Show();
-
-            this.ActiveEvent();
-
-            StartCoroutine(beeLifeControl.RespawnCoroutine());
+            OnActive();
 
         }
 
@@ -114,7 +97,7 @@ public class Bee : BaseEnemy
                 
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-                ChangeDirection();
+                ChangeDirection(waypointList[targetIndex].position);
 
             }
         }
@@ -127,49 +110,6 @@ public class Bee : BaseEnemy
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
                 
             }
-        }
-
-    }
-
-    private void ChangeDirection() {
-
-        Vector3 moveDir = waypointList[targetIndex].position - this.transform.position;
-
-        if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)) {
-            // Đang đi ngang
-
-            if (moveDir.x < 0) {
-                // Turn Left
-
-                this.currentBeeDirection = BaseEnemy.EnemyDirection.Left;
-
-                ChangedLeftDir?.Invoke(this, EventArgs.Empty);
-            }
-            else if (moveDir.x > 0) {
-                // Turn Right
-
-                this.currentBeeDirection = BaseEnemy.EnemyDirection.Right;
-
-                ChangedRightDir?.Invoke(this, EventArgs.Empty);
-            }
-
-
-        }
-
-        if (Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x)) {
-            // Đang đi dọc
-
-            if (moveDir.y < 0) {
-                // Turn Down
-
-                this.currentBeeDirection = BaseEnemy.EnemyDirection.Down;
-            }
-            else if (moveDir.y > 0) {
-                // Turn Up
-
-                this.currentBeeDirection = BaseEnemy.EnemyDirection.Up;
-            }
-
         }
 
     }
@@ -193,8 +133,37 @@ public class Bee : BaseEnemy
         this.gameObject.SetActive(true);
     }
 
-    public void Hide() {
+    private void Hide() {
         this.gameObject.SetActive(false);
+    }
+
+    public override void OnInit() {
+
+        // 1. Reset Position and Next Target
+        this.transform.position = waypointList[0].position;
+        targetIndex = 1;
+
+        // 2. Reset movement and direction
+        ChangeDirection(waypointList[targetIndex].position);
+        canMove = true;
+        targetPos = RandomWaypointPos(waypointList[targetIndex]);
+    }
+
+    public override void OnActive() {
+
+        waypointList = PathGenerator.Instance.GetWaypointList();
+
+        this.transform.position = waypointList[0].position;
+
+        Show();
+
+        this.ActiveEvent();
+
+        StartCoroutine(beeLifeControl.RespawnCoroutine());
+    }
+
+    public override void OnDespawn() {
+        Hide();
     }
 
     public override void HitDamage(float damageGet) {

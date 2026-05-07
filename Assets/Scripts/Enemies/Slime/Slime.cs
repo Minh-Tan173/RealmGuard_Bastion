@@ -7,8 +7,6 @@ public class Slime : BaseEnemy
 {
 
     public event EventHandler OnAnomalyAnim;
-    public event EventHandler ChangedLeftDir;
-    public event EventHandler ChangedRightDir;
 
     [Header("Slime Data")]
     [SerializeField] private EnemySO slimeSO;
@@ -52,7 +50,7 @@ public class Slime : BaseEnemy
         slimeLifeControl.OnSpawn += SlimeLifeControl_OnSpawn;
 
         // After Spawn
-        this.gameObject.SetActive(false);
+        OnDespawn();
 
     }
 
@@ -65,33 +63,14 @@ public class Slime : BaseEnemy
 
     private void SlimeLifeControl_OnSpawn(object sender, EventArgs e) {
 
-        // 1. Reset Next Target
-        targetIndex = 1;
-
-        // 2. Reset movement and direction
-        ChangeDirection();
-        canMove = true;
-        targetPos = RandomWaypointPos(waypointList[targetIndex]);
-
-        // 3. Reset Anomaly time
-        anomalyTimer = anomalyTimerMax + UnityEngine.Random.Range(-1f, 1f);
+        OnInit();
     }
 
     private void ParentSpawner_ActiveEnemy(object sender, EnemySpawner.OnActiveEnemyEventArgs e) {
 
         if (e.baseEnemy == this) {
 
-            waypointList = PathGenerator.Instance.GetWaypointList();
-
-            this.transform.position = waypointList[0].position;
-
-            Show();
-             
-            this.ActiveEvent();
-
-            isUnlockAnomaly = SaveData.IsUnlockAnomaly(slimeSO);
-
-            StartCoroutine(slimeLifeControl.RespawnCoroutine());
+            OnActive();
         }
 
     }
@@ -131,7 +110,7 @@ public class Slime : BaseEnemy
 
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-                ChangeDirection();
+                ChangeDirection(waypointList[targetIndex].position);
 
             }
         }
@@ -196,50 +175,6 @@ public class Slime : BaseEnemy
         slimeLifeControl.ChangeLifeStateTo(BaseEnemy.EnemyLifeState.Despawn);
     }
 
-
-    private void ChangeDirection() {
-
-        Vector3 moveDir = waypointList[targetIndex].position - this.transform.position;
-
-        if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)) {
-            // Đang đi ngang
-
-            if (moveDir.x < 0) {
-                // Turn Left
-
-                this.currentSlimeDirection = BaseEnemy.EnemyDirection.Left;
-
-                ChangedLeftDir?.Invoke(this, EventArgs.Empty);
-            }
-            else if (moveDir.x > 0) {
-                // Turn Right
-
-                this.currentSlimeDirection = BaseEnemy.EnemyDirection.Right;
-
-                ChangedRightDir?.Invoke(this, EventArgs.Empty);
-            }
-
-
-        }
-
-        if (Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x)) {
-            // Đang đi dọc
-
-            if (moveDir.y < 0) {
-                // Turn Down
-
-                this.currentSlimeDirection = BaseEnemy.EnemyDirection.Down;
-            }
-            else if (moveDir.y > 0) {
-                // Turn Up
-
-                this.currentSlimeDirection = BaseEnemy.EnemyDirection.Up;
-            }
-
-        }
-
-    }
-
     private Vector3 RandomWaypointPos(Transform targetWaypoint) {
 
         // Mặc định đặt lại randomTargetTimer mỗi lần randomWaypoint
@@ -259,8 +194,42 @@ public class Slime : BaseEnemy
         this.gameObject.SetActive(true);
     }
 
-    public void Hide() {
+    private void Hide() {
         this.gameObject.SetActive(false);
+    }
+
+    public override void OnInit() {
+
+        // 1. Reset Next Target
+        targetIndex = 1;
+
+        // 2. Reset movement and direction
+        ChangeDirection(waypointList[targetIndex].position);
+        canMove = true;
+        targetPos = RandomWaypointPos(waypointList[targetIndex]);
+
+        // 3. Reset Anomaly time
+        anomalyTimer = anomalyTimerMax + UnityEngine.Random.Range(-1f, 1f);
+    }
+
+    public override void OnActive() {
+
+        waypointList = PathGenerator.Instance.GetWaypointList();
+
+        this.transform.position = waypointList[0].position;
+
+        Show();
+
+        this.ActiveEvent();
+
+        isUnlockAnomaly = SaveData.IsUnlockAnomaly(slimeSO);
+
+        StartCoroutine(slimeLifeControl.RespawnCoroutine());
+    }
+
+    public override void OnDespawn() {
+
+        Hide();
     }
 
     public override void HitDamage(float damageGet) {
