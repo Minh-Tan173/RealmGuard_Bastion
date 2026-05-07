@@ -43,6 +43,23 @@ public class BaseEnemy : MonoBehaviour
         OnActiveEnemy?.Invoke(this, EventArgs.Empty);
     }
 
+    public void ChangeDirection(Vector3 targetPos) {
+
+
+    }
+
+    public virtual void OnInit() {
+        Debug.LogError("Trigger baseEnemy");
+    }
+
+    public virtual void OnActive() {
+        Debug.LogError("Trigger baseEnemy");
+    }
+
+    public virtual void OnDespawn() {
+        Debug.LogError("Trigger baseEnemy");
+    }
+
     public virtual void HitDamage(float damageGet) {
         Debug.LogError("Trigger baseEnemy");
     }

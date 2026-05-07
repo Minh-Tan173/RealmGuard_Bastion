@@ -172,6 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c3e07ca57e61a4fbd12701b525e684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1874870071056448289 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6811983119125255902, guid: 8a82a806d2f3798478d40f47ca34ac94, type: 3}
+  m_PrefabInstance: {fileID: 4939858264465583615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4378410659635457541 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8669107844490281978, guid: 8a82a806d2f3798478d40f47ca34ac94, type: 3}
+  m_PrefabInstance: {fileID: 4939858264465583615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5368643090667922009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1012367192834068390, guid: 8a82a806d2f3798478d40f47ca34ac94, type: 3}
@@ -195,3 +205,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fanglord: {fileID: 376909616421714363}
+  animator: {fileID: 4378410659635457541}
+  spriteRenderer: {fileID: 1874870071056448289}

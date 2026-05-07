@@ -42,7 +42,7 @@ public class FanglordLifeControl : MonoBehaviour, IHasProgressBar {
 
             case BaseEnemy.EnemyLifeState.Despawn:
 
-                //fangLord.Hide();
+                fangLord.OnDespawn();
 
                 break;
         }
@@ -80,7 +80,8 @@ public class FanglordLifeControl : MonoBehaviour, IHasProgressBar {
         yield return new WaitForSeconds(fangLord.GetFangLordSO().deathTimer);
 
         LevelManager.Instance.ChangedCoinTo(ILevelManager.CoinChangedState.Increase, fangLord.GetFangLordSO().enemyPrice);
-        fangLord.Hide();
+
+        fangLord.OnDespawn();
 
     }
 
@@ -103,5 +104,9 @@ public class FanglordLifeControl : MonoBehaviour, IHasProgressBar {
 
     public BaseEnemy.EnemyLifeState GetCurrentBeeLifeState() {
         return this.currentFangLordLifeState;
+    }
+
+    public float GetCurrentHealth() {
+        return this.currentHealth;
     }
 }

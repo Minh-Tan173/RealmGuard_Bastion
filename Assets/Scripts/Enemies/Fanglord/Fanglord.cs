@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Fanglord : BaseEnemy {
 
+    public enum FanglordBehavior {
+        Walk,
+        Attack
+    }
+
     public event EventHandler ChangedLeftDir;
     public event EventHandler ChangedRightDir;
 
@@ -42,36 +47,21 @@ public class Fanglord : BaseEnemy {
 
     private void FanglordLifeControl_OnSpawn(object sender, EventArgs e) {
 
-        // 1. Reset Position and Next Target
-        this.transform.position = waypointList[0].position;
-        targetIndex = 1;
-
-        // 2. Reset movement and direction
-        ChangeDirection();
-        canMove = true;
-        targetPos = RandomWaypointPos(waypointList[targetIndex]);
+        OnInit();
     }
 
     private void ParentSpawner_ActiveEnemy(object sender, EnemySpawner.OnActiveEnemyEventArgs e) {
 
         if (this == e.baseEnemy) {
 
-            waypointList = PathGenerator.Instance.GetWaypointList();
-
-            this.transform.position = waypointList[0].position;
-
-            Show();
-
-            this.ActiveEvent();
-
-            StartCoroutine(fanglordLifeControl.RespawnCoroutine());
+            OnActive();
         }
     }
 
     private void Update() {
 
         HandleMovement();
-    }
+    }   
 
     private void HandleMovement() {
 
@@ -178,7 +168,34 @@ public class Fanglord : BaseEnemy {
         this.gameObject.SetActive(true);
     }
 
-    public void Hide() {
+    public override void OnInit() {
+
+        // 1. Reset Position and Next Target
+        this.transform.position = waypointList[0].position;
+        targetIndex = 1;
+
+        // 2. Reset movement and direction
+        ChangeDirection();
+        canMove = true;
+        targetPos = RandomWaypointPos(waypointList[targetIndex]);
+    }
+
+    public override void OnActive() {
+
+        waypointList = PathGenerator.Instance.GetWaypointList();
+
+        this.transform.position = waypointList[0].position;
+
+        Show();
+
+        this.ActiveEvent();
+
+        StartCoroutine(fanglordLifeControl.RespawnCoroutine());
+    }
+
+
+    public override void OnDespawn() {
+
         this.gameObject.SetActive(false);
     }
 

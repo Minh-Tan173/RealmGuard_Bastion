@@ -6,6 +6,10 @@ public class FanglordVisual : MonoBehaviour
 {
     [SerializeField] private Fanglord fanglord;
 
+    [Header("Ref Component")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     // --- CONST STRING ---
     #region Up
     private const string IS_WALK_UP = "IsWalkUp";
@@ -22,23 +26,24 @@ public class FanglordVisual : MonoBehaviour
     private const string TRIGGER_DEATH_SIDE = "TriggerDeathSide";
     #endregion
 
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-
     private bool isWalkUp;
     private bool isWalkDown;
     private bool isWalkSide;
 
     private void Awake() {
 
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start() {
 
         fanglord.ChangedLeftDir += Fanglord_ChangedLeftDir;
         fanglord.ChangedRightDir += Fanglord_ChangedRightDir;
+    }
+
+    private void OnDestroy() {
+
+        fanglord.ChangedLeftDir -= Fanglord_ChangedLeftDir;
+        fanglord.ChangedRightDir -= Fanglord_ChangedRightDir;
     }
 
     private void Fanglord_ChangedRightDir(object sender, System.EventArgs e) {
@@ -51,8 +56,12 @@ public class FanglordVisual : MonoBehaviour
         spriteRenderer.flipX = false;
     }
 
-    private void UpdateAnimator() {
+    private void Update() {
+        
+    }
 
+    private void UpdateVisual() {
 
+        
     }
 }
