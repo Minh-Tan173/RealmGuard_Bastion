@@ -110,7 +110,7 @@ public class Slime : BaseEnemy
 
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-                ChangeDirection(waypointList[targetIndex].position);
+                this.currentSlimeDirection = ChangeDirection(waypointList[targetIndex].position);
 
             }
         }
@@ -204,7 +204,7 @@ public class Slime : BaseEnemy
         targetIndex = 1;
 
         // 2. Reset movement and direction
-        ChangeDirection(waypointList[targetIndex].position);
+        this.currentSlimeDirection = ChangeDirection(waypointList[targetIndex].position);
         canMove = true;
         targetPos = RandomWaypointPos(waypointList[targetIndex]);
 

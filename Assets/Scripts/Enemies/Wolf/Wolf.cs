@@ -153,7 +153,7 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
 
                 targetPos = RandomWaypointPos(waypointList[targetWaypointIndex]);
 
-                ChangeDirection(waypointList[targetWaypointIndex].position);
+                this.currentWolfDirection = ChangeDirection(waypointList[targetWaypointIndex].position);
 
             }
         }
@@ -299,7 +299,7 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
             // If hasn't target --> Continue Walk
 
             // Về lại walk thì tính toán lại Direction
-            ChangeDirection(waypointList[targetWaypointIndex].position);
+            this.currentWolfDirection = ChangeDirection(waypointList[targetWaypointIndex].position);
 
             ChangeWolfBehaviorTo(WolfBehavior.Walk);
         }
@@ -313,7 +313,7 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
             // if target was destroy
 
             // Về lại walk thì tính toán lại Direction
-            ChangeDirection(waypointList[targetWaypointIndex].position);
+            this.currentWolfDirection = ChangeDirection(waypointList[targetWaypointIndex].position);
 
             ChangeWolfBehaviorTo(WolfBehavior.Walk);
 
@@ -321,7 +321,7 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
         }
 
         // ---- 1. Move Toward to tower - If target was destroy when movement behavior back to Walk ----
-        ChangeDirection(currentTarget.transform.position);
+        this.currentWolfDirection = ChangeDirection(currentTarget.transform.position);
 
         ResetAnimator?.Invoke(this, EventArgs.Empty); // Trước khi di chuyển, đảm bảo reset animator về lại nhóm animator di chuyển
 
@@ -376,7 +376,7 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
         currentTarget = null;
 
         // Về lại walk thì tính toán lại Direction
-        ChangeDirection(waypointList[targetWaypointIndex].position);
+        this.currentWolfDirection = ChangeDirection(waypointList[targetWaypointIndex].position);
 
         ChangeWolfBehaviorTo(WolfBehavior.Walk);
 
@@ -433,7 +433,7 @@ public class Wolf : BaseEnemy, ICanAttackPhysic
         targetWaypointIndex = 1;
 
         // 2. Reset movement and direction
-        ChangeDirection(waypointList[targetWaypointIndex].position);
+        this.currentWolfDirection = ChangeDirection(waypointList[targetWaypointIndex].position);
         targetPos = RandomWaypointPos(waypointList[targetWaypointIndex]);
 
         // 3. Reset Behavior

@@ -20,7 +20,7 @@ MonoBehaviour:
   levelDataList:
   - biomeType: 1
     gameLevel: 1
-    levelManagerSO: {fileID: 11400000, guid: 47ca5390df31a384d832ead8f6c41d3a, type: 2}
+    levelManagerSO: {fileID: 11400000, guid: 27f14a0911e857f46916f09cd2c531f0, type: 2}
     sceneToLoad: 3
   - biomeType: 1
     gameLevel: 2

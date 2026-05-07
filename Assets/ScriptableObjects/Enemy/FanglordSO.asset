@@ -16,9 +16,9 @@ MonoBehaviour:
   enemyName: Fanglord
   description: 
   anomalyDescription: 
-  enemyPrice: 0
-  totalHealth: 0
-  moveSpeed: 0
+  enemyPrice: 20
+  totalHealth: 100
+  moveSpeed: 5
   radiusOffset: 0
   anomalyRate: 0
   detectedZone: 0
@@ -29,9 +29,9 @@ MonoBehaviour:
   canAttackLayer:
     serializedVersion: 2
     m_Bits: 0
-  deathTimer: 0
-  randomTargetTimer: 0
+  deathTimer: 0.51
+  randomTargetTimer: 1.2
   thinkingTimer: 0
   attackTimer: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 5368643090667922009, guid: c8f11e3ad09c1a4468e7abfc98a6ceae, type: 3}
   introductionUI: {fileID: 0}

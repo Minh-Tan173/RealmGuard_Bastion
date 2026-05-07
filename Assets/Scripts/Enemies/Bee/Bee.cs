@@ -97,7 +97,7 @@ public class Bee : BaseEnemy
                 
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-                ChangeDirection(waypointList[targetIndex].position);
+                 this.currentBeeDirection = ChangeDirection(waypointList[targetIndex].position);
 
             }
         }
@@ -144,7 +144,7 @@ public class Bee : BaseEnemy
         targetIndex = 1;
 
         // 2. Reset movement and direction
-        ChangeDirection(waypointList[targetIndex].position);
+        this.currentBeeDirection = ChangeDirection(waypointList[targetIndex].position);
         canMove = true;
         targetPos = RandomWaypointPos(waypointList[targetIndex]);
     }

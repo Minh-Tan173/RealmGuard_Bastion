@@ -150,7 +150,7 @@ public class Orc : BaseEnemy, ICanAttackPhysic
 
                 targetPos = RandomWaypointPos(waypointList[targetIndex]);
 
-                ChangeDirection(waypointList[targetIndex].position);
+                this.currentOrcDirection = ChangeDirection(waypointList[targetIndex].position);
 
             }
         }
@@ -178,7 +178,7 @@ public class Orc : BaseEnemy, ICanAttackPhysic
                 canMove = true;
                 isLockedByTarget = false;
 
-                ChangeDirection(waypointList[targetIndex].position); // Counting direction again
+                this.currentOrcDirection = ChangeDirection(waypointList[targetIndex].position); // Counting direction again
 
                 OnResetAnim?.Invoke(this, EventArgs.Empty);
                 
@@ -212,7 +212,7 @@ public class Orc : BaseEnemy, ICanAttackPhysic
                 yield break;
             }
 
-            ChangeDirection(currentTarget.transform.position);
+            this.currentOrcDirection = ChangeDirection(currentTarget.transform.position);
 
             OnAttackAnim?.Invoke(this, EventArgs.Empty);
 
@@ -345,7 +345,7 @@ public class Orc : BaseEnemy, ICanAttackPhysic
 
         // 2. Reset movement behavior and direction
         ChangeOrcBehaviorTo(OrcBehavior.Walk);
-        ChangeDirection(waypointList[targetIndex].position);
+        this.currentOrcDirection = ChangeDirection(waypointList[targetIndex].position);
         canMove = true;
         targetPos = RandomWaypointPos(waypointList[targetIndex]);
 

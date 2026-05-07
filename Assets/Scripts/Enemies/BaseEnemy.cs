@@ -53,6 +53,7 @@ public class BaseEnemy : MonoBehaviour
 
         Vector3 moveDir = targetPos - this.transform.position;
 
+
         if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.y)) {
             // Đang đi ngang
 
